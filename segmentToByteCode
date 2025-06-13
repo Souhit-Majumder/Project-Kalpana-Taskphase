@@ -1,0 +1,34 @@
+####################################################################################
+
+# Converts any valid seven segment letter into its byte equivalent in MSBFIRST form
+# useful for getting byte equivalents when giving 7-segement display segments. This
+# was used to form the byte table in messagesToByte program.
+
+#####################################################################################
+
+while(True):
+    str = input("Enter the segments: ").lower()
+    if str == 'exit':
+        print("Exiting.....")
+        break
+
+    segments = 'abcdefgp'
+    flag = True
+    for segment in str:
+        if segment not in segments:
+            print(f'Invalid segment {segment} used. Try again.')
+            flag = False
+            break
+
+    if not flag:
+        continue
+
+    code = ''
+    for i in range(len(segments)):
+        print(segments[i])
+        if segments[i] in str:
+            code += '1'
+        else:
+            code += '0'
+
+    print('B' + code[::-1])
