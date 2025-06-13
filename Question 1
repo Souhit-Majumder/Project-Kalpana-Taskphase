@@ -1,0 +1,27 @@
+/*******************************************************************************************************************************
+Controlling LED Brightness with a Button (3 Levels)
+
+Control the brightness of an LED using a button. Cycle through 3 brightness levels (low, medium, high) with each button press.
+*******************************************************************************************************************************/
+
+const int ledPin = 11;
+const int switchPin = 4;
+int buttonState = 0;
+int counter = 0;
+
+int brightness[] = {20, 100, 255}; // brightness levels for the LED
+// can optionally add 0 to turn it off
+
+void setup()
+{
+  pinMode(ledPin, OUTPUT);
+  pinMode(switchPin, INPUT);
+}
+
+void loop()
+{
+  if(digitalRead(switchPin) == HIGH)	{
+    delay(500);
+  	analogWrite(ledPin, brightness[counter++ % 3]); // if adding 0, change 3 to 4
+  }
+}
