@@ -1,0 +1,67 @@
+/*******************************************************************************************************************************
+7-Segment Display Counter (1 to 1000 and back to 1)
+
+Use a 7-segment display to count from 1 to 1000 and then back to 1 in a loop.
+*******************************************************************************************************************************/
+
+#define DATA 6      
+#define LATCH 8     
+#define CLOCK 10    
+
+const int animationSpeed = 25; //ms
+const int resetSpeed = 1000; //ms
+
+const unsigned int lowerLimit = -1; // change the lower bound
+const unsigned int upperLimit = 100; // change the upper bound 
+
+// set up the array with the segments for 0 to 9
+byte data[] = {
+  B00111111, // Zero
+  B00000110, // One
+  B01011011, // Two
+  B01001111, // Three
+  B01100110, // Four
+  B01101101, // Five
+  B01111101, // Six
+  B00000111, // Seven
+  B01111111, // Eight
+  B01101111, // Nine
+};
+
+void setup() {
+  pinMode(LATCH, OUTPUT);
+  pinMode(CLOCK, OUTPUT);
+  pinMode(DATA, OUTPUT);
+}
+
+void loop() {
+  int j;
+  for (j = lowerLimit ; j < upperLimit ; j++) {
+    displayNumber(j);
+    delay(animationSpeed);
+  }
+  
+  displayNumber(upperLimit);
+  delay(resetSpeed);
+  
+  for (j = upperLimit ; j > lowerLimit ; j--) {
+    displayNumber(j);
+    delay(animationSpeed);
+  }
+}
+
+void displayNumber(int n) {
+  int thousandth , hundredth, tenth, unit;
+  
+  thousandth = n / 1000;
+  hundredth = (n % 1000) / 100;
+  tenth = (n % 100) / 10;
+  unit = n % 10;
+  
+  digitalWrite(LATCH, LOW);
+  shiftOut(DATA, CLOCK, MSBFIRST, data [thousandth]);
+  shiftOut(DATA, CLOCK, MSBFIRST, data [hundredth]);
+  shiftOut(DATA, CLOCK, MSBFIRST, data [tenth]);
+  shiftOut(DATA, CLOCK, MSBFIRST, data[unit]);
+  digitalWrite(LATCH, HIGH);
+}
