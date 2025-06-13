@@ -25,3 +25,5 @@ void loop()
   	analogWrite(ledPin, brightness[counter++ % 3]); // if adding 0, change 3 to 4
   }
 }
+
+// Link to design: https://www.tinkercad.com/things/1FdomPpj1Wo-question-1/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard%2Fcollections%2FddwPLP9Ca2q%2Fcircuits
