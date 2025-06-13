@@ -11,8 +11,8 @@ Use a 7-segment display to count from 1 to 1000 and then back to 1 in a loop.
 const int animationSpeed = 25; //ms
 const int resetSpeed = 1000; //ms
 
-const unsigned int lowerLimit = -1; // change the lower bound
-const unsigned int upperLimit = 100; // change the upper bound 
+const unsigned int lowerLimit = 1; // change the lower bound
+const unsigned int upperLimit = 1000; // change the upper bound 
 
 // set up the array with the segments for 0 to 9
 byte data[] = {
