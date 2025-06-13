@@ -11,7 +11,7 @@ enum {
   LED4 = 12
 	}; // the pins of arduino to which the leds are attached
 
-int const animationSpeed = 1000; // control speed of lighting here
+const unsigned int animationSpeed = 1000; // control speed of lighting here
 
 void setup()
 {
