@@ -15,6 +15,8 @@ byte data[] = {
         B00000000, // /s
         B00000000, // /s
         B00000000, // /s
+        B00000110, // I
+        B00000000, // /s
         B00111000, // L
         B00111111, // O
         B00111110, // V
@@ -37,9 +39,8 @@ byte data[] = {
         B00000000  // /s
 };
 
-
 const int animationSpeed = 400; //ms
-const int arraySize = 25;
+const int arraySize = 27;
 const int displayCount = 6; //change this accordingly to the number of displays used
 
 void setup()
