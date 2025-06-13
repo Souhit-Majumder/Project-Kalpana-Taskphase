@@ -65,3 +65,5 @@ void displayNumber(int n) {
   shiftOut(DATA, CLOCK, MSBFIRST, data[unit]);
   digitalWrite(LATCH, HIGH);
 }
+
+// Link to design: https://www.tinkercad.com/things/2SRD7au6RXM-question3/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard%2Fcollections%2FddwPLP9Ca2q%2Fcircuits
