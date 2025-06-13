@@ -1,0 +1,75 @@
+#########################################################################################
+
+# Converts any valid seven segment letter into its byte equivalent in MSBFIRST form, and
+# returns an array for copy-pasting, also gives the size of the array for convenience.
+
+#########################################################################################
+data = {    
+            'A' : 'B01110111', 'B' : 'B01111111', 'C' : 'B00111001', 
+            'E' : 'B01111001', 'F' : 'B01110001', 'H' : 'B00110110',
+            'I' : 'B00000110', 'J' : 'B00001110', 'L' : 'B00111000',
+            'O' : 'B00111111', 'P' : 'B01110011', 'R' : 'B01110111',
+            'S' : 'B01101101', 'U' : 'B00111110', 'V' : 'B00111110',
+            'Z' : 'B01011011', ' ' : 'B00000000', '.' : 'B10000000',
+            '0' : 'B00111111', '1' : 'B00000110', '2' : 'B01011011', 
+            '3' : 'B01001111', '4' : 'B01100110', '5' : 'B01101101', 
+            '6' : 'B01111101', '7' : 'B00000111', '8' : 'B01111111', 
+            '9' : 'B01100111'
+        }
+
+def converter(message, noOfDisplays):
+    arraySize = 0
+    print("{ ")
+
+    for i in range(noOfDisplays - 1): # to always keep one letter on display set
+        print(f"\t{data[' ']}, // /s")
+        arraySize += 1
+
+    for i, letter in enumerate(message):
+        printOut = f"\t{data[letter]}, // "
+            # printOut += f" // {letter}" if i == len(message) - 1 else  f", // {letter}"
+            # if blank spaces are not needed for surrounding the message
+        printOut += '/s' if letter == ' ' else f"{letter}"
+        print(printOut)
+        arraySize += 1
+
+    for i in range(noOfDisplays - 2):
+        print(f"\t{data[' ']}, // /s")
+        arraySize += 1
+    
+    print(f"\t{data[' ']}  // /s") # for the final data segment
+    arraySize += 1
+
+    print("}; ")
+    print()
+    print(f"Array size: {arraySize}")
+    
+
+def checker(message):
+    valid_chars = list(data.keys())
+    for letter in message:
+        if letter not in valid_chars:
+            print(f'Invalid character {letter} used in statement. Try again.')
+            return False
+    
+    print('Valid Statement.')
+    return True
+
+
+while(True):
+    print("Allowed characters: A B C E F H I J L O P R S U V and Z")
+
+    message = input("Enter a message: ").upper()
+
+    if message == 'EXIT':
+        print("Exiting.....")
+        break
+
+    validStatementCheck = checker(message)
+
+    if not validStatementCheck:
+       continue
+
+    displayCount = int(input("Enter number of displays in use: "))
+
+    converter(message, displayCount)
