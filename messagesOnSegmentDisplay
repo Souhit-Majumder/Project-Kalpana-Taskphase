@@ -1,0 +1,68 @@
+/******************************************************************************************
+
+Can display short messages in a rolling manner using 7 segment displays, use with 
+messagesToByte program provided to create the data array.
+
+*******************************************************************************************/
+
+#define DATA 9      
+#define LATCH 10     
+#define CLOCK 11    
+
+byte data[] = { 
+        B00000000, // /s
+        B00000000, // /s
+        B00000000, // /s
+        B00000000, // /s
+        B00000000, // /s
+        B00111000, // L
+        B00111111, // O
+        B00111110, // V
+        B01111001, // E
+        B00000000, // /s
+        B00111110, // U
+        B00000000, // /s
+        B01001111, // 3
+        B00111111, // 0
+        B00111111, // 0
+        B00111111, // 0
+        B10000000, // .
+        B10000000, // .
+        B10000000, // .
+        B10000000, // .
+        B00000000, // /s
+        B00000000, // /s
+        B00000000, // /s
+        B00000000, // /s
+        B00000000  // /s
+};
+
+
+const int animationSpeed = 400; //ms
+const int arraySize = 25;
+const int displayCount = 6; //change this accordingly to the number of displays used
+
+void setup()
+{
+  pinMode(DATA, OUTPUT);
+  pinMode(LATCH, OUTPUT);
+  pinMode(CLOCK, OUTPUT);
+}
+
+void loop()
+{
+  for(int i = 0; i < arraySize - displayCount + 1; i++)	{
+    writeMessage(i);
+    delay(animationSpeed);
+  }
+}
+
+void writeMessage(int pos)	{
+  for(int i = 0; i < displayCount; i++)	{
+    digitalWrite(LATCH, LOW);
+    shiftOut(DATA, CLOCK, MSBFIRST, data[pos + i]);
+  }
+  digitalWrite(LATCH, HIGH);
+}
+
+design at :https://www.tinkercad.com/things/cpiDQ1DvSk1-messages?sharecode=240cN9nEqX8YLFuZTuYEAhjRhvNZLdkBgaxF5RaAiIE
