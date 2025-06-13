@@ -1,0 +1,49 @@
+/*******************************************************************************************************************************
+4-Bit Up Counter Using LEDs
+
+Create a 4-bit up counter using LEDs. It should count from 0 to 15, lighting up LEDs in binary.
+*******************************************************************************************************************************/
+
+enum {
+  LED1 = 9,
+  LED2 = 10,
+  LED3 = 11,
+  LED4 = 12
+	}; // the pins of arduino to which the leds are attached
+
+int const animationSpeed = 1000; // control speed of lighting here
+
+void setup()
+{
+  pinMode(LED1, OUTPUT);
+  pinMode(LED2, OUTPUT);
+  pinMode(LED3, OUTPUT);
+  pinMode(LED4, OUTPUT);
+}
+
+void loop()
+{  
+  for(int i = 0; i < 16 ; i++)	{
+    lightControl(i);
+    delay(animationSpeed);
+  }
+}
+
+void lightControl(int num)	{
+  int binary[4] = {0};
+  int counter = 0;
+  
+  while(num)	{
+      binary[counter++] = num % 2;
+      num /= 2;
+  }
+  
+  for(int i = 0; i < 4; i++)	{
+    if(binary[i])	{
+      digitalWrite(LED1 + i, HIGH);
+    }
+    else	{
+      digitalWrite(LED1 + i, LOW);
+    }
+  }
+}
