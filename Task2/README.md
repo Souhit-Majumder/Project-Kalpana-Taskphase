@@ -1,6 +1,3 @@
-# Project-Kalpana
-*Electronics and Automation_Task Phase*
-
 ## Task-2
 
 ### 📁 Projects Overview
