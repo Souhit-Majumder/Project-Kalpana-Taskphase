@@ -1,0 +1,23 @@
+const int ledPin = 11;
+const int switchPin = 4;
+int buttonState = 0;
+int counter = 0;
+
+int brightness[] = {20, 100, 255}; // brightness levels for the LED
+// can optionally add 0 to turn it off
+
+void setup()
+{
+  pinMode(ledPin, OUTPUT);
+  pinMode(switchPin, INPUT);
+}
+
+void loop()
+{
+  if(digitalRead(switchPin) == HIGH)	{
+    delay(500);
+  	analogWrite(ledPin, brightness[counter++ % 3]); // if adding 0, change 3 to 4
+  }
+}
+
+// Link to design: https://www.tinkercad.com/things/1FdomPpj1Wo-question-1?sharecode=oHlvyTvvp67l0PE220G9Pk6FMQWh_ZX81qc5d8vtJT4
