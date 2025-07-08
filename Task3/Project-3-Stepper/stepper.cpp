@@ -11,7 +11,7 @@ const int direction = 1;              // 1 = forward, -1 = reverse
 const int animationSpeed = 2000;      // ms
 const int stepperSpeed = 15;          // rpm
 
-Stepper myStepper(stepsPerRevolution, IN1, IN3, IN2, IN4);
+Stepper myStepper(stepsPerRevolution, IN1, IN2, IN3, IN4);
 
 void setup() {
   myStepper.setSpeed(stepperSpeed);  // Speed in RPM
