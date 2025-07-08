@@ -1,9 +1,9 @@
 #include <Stepper.h>
 
-#define IN1 11
-#define IN2 10
-#define IN3 9
-#define IN4 8
+#define IN1 8
+#define IN2 9
+#define IN3 10
+#define IN4 11
 
 const int stepsPerRevolution = 2048; 
 const int rotations = 3;              // number of full rotations
